@@ -19,7 +19,7 @@ class CreateAccountsTable extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('hoten');
-            $table->integer('age');
+            $table->integer('birthday');
             $table->integer('permission');
             $table->rememberToken();
             $table->timestamps();
