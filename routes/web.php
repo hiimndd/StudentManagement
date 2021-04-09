@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.AdminMaster');
 });
+Route::get('/dangky', function () {
+    return view('pages.register');
+});
