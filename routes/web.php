@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AccountController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +18,11 @@ Route::get('/', function () {
 });
 Route::get('/dangky', function () {
     return view('pages.register');
+})->name('dangky');
+Route::post('/postregister', [AccountController::class,'postregister'])->name('postregister');
+
+
+Route::Resource('/account', AccountController::class);
+Route::get('/index', function () {
+    return view('pages.indexAccount');
 });

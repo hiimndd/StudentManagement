@@ -18,8 +18,8 @@ class CreateAccountsTable extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('email')->unique();
-            $table->string('hoten');
-            $table->integer('birthday');
+            $table->string('name');
+            $table->date('birthday');
             $table->integer('permission');
             $table->rememberToken();
             $table->timestamps();
