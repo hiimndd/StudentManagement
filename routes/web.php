@@ -26,3 +26,5 @@ Route::Resource('/account', AccountController::class);
 Route::get('/index', function () {
     return view('pages.indexAccount');
 });
+
+Route::post('/findaccount', [AccountController::class,'indexfind'])->name('findaccount');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AccountController extends Controller
 {
@@ -13,7 +14,8 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        $account = User::all();
+        return view('pages.indexAccount',['account'=>$account]);
     }
 
     /**
@@ -108,30 +110,14 @@ class AccountController extends Controller
     {
         //
     }
-    // public function login(){
+    public function indexfind(Request $request){
+        // $account =array();
+        if($request->permission == 0){
+            $account = User::All();
+        }else{
+            $account = User::All()->where('permission', '=', $request->permission);
+        }
         
-    // }
-    // public function postlogin(Request $request){
-       
-    //     if(Auth::attempt(['username' => $request->username, 'password' => $request->password], true)){
-            
-        
-    //         return redirect()->route('home.index')->with('notification','Wellcome');
-    //     }
-    //     else {
-    //         return redirect()->route('login')->with('notification','Sai tên đăng nhập hoặt mật khẩu!');
-    //     }
-    // }
-
-    // public function register(){
-    //     return view('pages.register');
-    // }
-    // public function postregister(Request $request){
-        
-    // }
-    // public function loguot(){
-    //     // Auth::guard('backend')->loguot();
-    //     Auth::guard('backend')->logout();
-    //     return redirect()->route('login');
-    // }
+        return view('pages.indexAccount',['account'=>$account]);
+    }
 }
