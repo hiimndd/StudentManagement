@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -74,7 +75,9 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::All()->where('id', '=', $id);
+        
+        return view('pagesAccount.showAccount',['user'=>$user]);
     }
 
     /**
@@ -144,5 +147,21 @@ class AccountController extends Controller
         }
         
         return view('pagesAccount.indexAccount',['account'=>$account]);
+    }
+    public function postlogin(Request $request){
+        
+         if(Auth::attempt(['username' => $request->username, 'password' => $request->password], true)){
+             
+         
+             return redirect()->route('account.index')->with('notification','Wellcome');
+         }
+         else {
+             return redirect()->route('login')->with('notification','Sai tên đăng nhập hoặt mật khẩu!');
+         }
+    }
+    public function loguot(){
+        // Auth::guard('backend')->loguot();
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
