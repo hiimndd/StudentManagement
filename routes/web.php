@@ -17,14 +17,14 @@ Route::get('/', function () {
     return view('layouts.AdminMaster');
 });
 Route::get('/dangky', function () {
-    return view('pages.register');
+    return view('pagesAccount.register');
 })->name('dangky');
 Route::post('/postregister', [AccountController::class,'postregister'])->name('postregister');
 
 
 Route::Resource('/account', AccountController::class);
 Route::get('/index', function () {
-    return view('pages.indexAccount');
+    return view('pagesAccount.indexAccount');
 });
 
 Route::post('/findaccount', [AccountController::class,'indexfind'])->name('findaccount');

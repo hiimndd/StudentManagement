@@ -112,7 +112,7 @@
           <form action="" method="post">
           
           <a href = ""><button type="button" class="btn btn-primary">chi tiết</button><a> </a>
-          <a href = ""><button type="button" class="btn btn-primary">sửa</button><a> </a>
+          <a href = "{{route('account.edit', $row['id'])}}"><button type="button" class="btn btn-primary">sửa</button><a> </a>
           @csrf
           @method('DELETE')
           <a onclick="return confirm('Bạn có chắc muốn xóa thông tin này')">

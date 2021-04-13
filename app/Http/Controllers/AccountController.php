@@ -15,7 +15,7 @@ class AccountController extends Controller
     public function index()
     {
         $account = User::all();
-        return view('pages.indexAccount',['account'=>$account]);
+        return view('pagesAccount.indexAccount',['account'=>$account]);
     }
 
     /**
@@ -25,7 +25,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('pages.register');
+        return view('pagesAccount.register');
     }
 
     /**
@@ -85,7 +85,8 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id)->toArray();
+        return view('pagesAccount.editAccount',['user'=>$user]);
     }
 
     /**
@@ -97,7 +98,31 @@ class AccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        
+        $this->validate($request,
+        [
+            'email' => "required|email|unique:accounts,email,$id",
+            'name' => "required",
+            'birthday' => 'required',
+        ],[
+            'email.unique' => 'Email này đã được sử dụng',
+            'email.required' => 'Chúng tôi cần biết email của tài khoản',
+            'email.email' => 'Email không đúng định dạng',
+            'name.required' => 'Không bỏ trống tên đăng nhập',
+            'birthday.required' => 'Đừng bỏ trắng dòng này ',
+            
+        ]);
+       
+        $user->name = $request->name;
+        $user->birthday = $request->birthday;
+        $user->email = $request->email;
+        if(isset($request->checkbox)){
+            $user->password = bcrypt("123");
+        }
+        
+        $user->save();
+        return redirect()->route('account.index')->with('notification','Sữa thành công!');
     }
 
     /**
@@ -118,6 +143,6 @@ class AccountController extends Controller
             $account = User::All()->where('permission', '=', $request->permission);
         }
         
-        return view('pages.indexAccount',['account'=>$account]);
+        return view('pagesAccount.indexAccount',['account'=>$account]);
     }
 }
