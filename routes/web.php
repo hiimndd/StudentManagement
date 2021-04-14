@@ -44,5 +44,8 @@ Route::post('/postlogin', [AccountController::class,'postlogin'])->name('postlog
     Route::Resource('/account', AccountController::class);
     Route::post('/find', [AccountController::class,'indexfind'])->name('find');
     Route::get('/loguot', [AccountController::class,'loguot'])->name('loguot');
+    Route::get('/export', [AccountController::class,'export'])->name('export');
+    Route::get('/import', [AccountController::class,'import'])->name('import');
+
     
  });

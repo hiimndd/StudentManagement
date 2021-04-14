@@ -1,8 +1,14 @@
 @extends('layouts.Adminmaster')
-
+<!DOCTYPE html>
+<html lang="en">
 @section('Adminmaster')
 
+<head>
 
+ 
+
+</head>
+<body>
 <div class="d-flex justify-content-center">
 <div class="col-lg-7">
         <div class="p-5">
@@ -47,6 +53,16 @@
                 </button>
                 <hr>
             </form>
+            <form action="{{route('import')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" accept=".xlsx"><br>
+            <input type="submit" value="Import CSV" name="import" class="btn btn-warning">
+                </form>
+            <form action="{{route('export')}}" method="POST">
+                @csrf
+            <input type="submit" value="Export CSV" name="export" class="btn btn-success">
+            </form>
+            
             </div>
             </div>
             
@@ -57,12 +73,12 @@
 
 
 
-
+            
 
           
            
   
-          
+            
   <table class="table table-striped">
   <thead>
       <tr>
@@ -73,8 +89,8 @@
       </tr>
       </thead>
   <tbody>
-          
-
+            
+  
 
           @foreach($account as $row)
           <tr>
@@ -100,7 +116,7 @@
           </td>
           </tr>
           @endforeach
-          
+            
           
       </tbody>
   </table>
@@ -111,7 +127,9 @@
   @endif
   
   </div>
-
+  
+  </body>
+  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 

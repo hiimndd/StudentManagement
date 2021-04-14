@@ -61,18 +61,21 @@
                                                 
                                             </div>
                                         </div>
+                                        
                                         <button class="btn btn-primary btn-user btn-block" type="submit" >Login</button>
                                         
                                         
                                         <hr>
                                         
                                     </form>
+                                    
+
                                     @if(session('notification'))
                                         <div class="alert alert-success">
                                         {{session('notification')}}
                                         </div>
                                     @endif
-                                    <hr>
+                                    
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>

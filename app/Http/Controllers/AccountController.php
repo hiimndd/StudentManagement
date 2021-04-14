@@ -164,4 +164,10 @@ class AccountController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+    public function impoort(){
+        
+    }
+    public function export(){
+        
+    }
 }
