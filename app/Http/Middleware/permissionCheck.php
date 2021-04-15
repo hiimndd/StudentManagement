@@ -5,8 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-class CheckloginMiddleware
+class permissionCheck
 {
     /**
      * Handle an incoming request.
@@ -15,14 +14,14 @@ class CheckloginMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $roles)
     {
         
-        if(Auth::check()){
-            return $next($request);
-        }else{
-            return redirect()->route('login');
-        }
         
+        $role = explode('|',$roles );
+        if(in_array(Auth::user()->getpermission(), $role)){
+            return $next($request);
+        }
+        return redirect()->route('student');
     }
 }

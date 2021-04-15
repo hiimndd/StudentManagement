@@ -18,7 +18,12 @@ class CheckloguotMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
-            
+            if(Auth::user()->permission == 1){
+                return redirect()->route('account.index');
+            }else{
+                return redirect()->route('student');
+            }
+
             return redirect()->route('account.index');
             
         }else{

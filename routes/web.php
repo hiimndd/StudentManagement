@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CourseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,19 +35,40 @@ use App\Http\Controllers\AccountController;
 // });
 Route::get('/', function () {
     return view('pagesAccount.login');
-})->name('login')->middleware('ChecklogoutMiddleware');
+})->name('login')->middleware('CheckloguotMiddleware');
 
-Route::post('/postlogin', [AccountController::class,'postlogin'])->name('postlogin');
-
- Route::group(['prefix'=>'admin','middleware' => 'CheckloginMiddleware'],function(){
-    Route::get('/', function () {
-        return view('layouts.AdminMaster');
-    });
-    Route::Resource('/account', AccountController::class);
-    Route::post('/find', [AccountController::class,'indexfind'])->name('find');
-    Route::get('/loguot', [AccountController::class,'loguot'])->name('loguot');
-    Route::get('/export', [AccountController::class,'export'])->name('export');
-    Route::get('/import', [AccountController::class,'import'])->name('import');
+Route::get('/loguotadmin', [LoginController::class,'loguotadmin'])->name('loguotadmin');
+Route::post('/postlogin', [LoginController::class,'postlogin'])->name('postlogin');
+Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(){
+    
+    
+    Route::group(['prefix'=>'admin','middleware' => 'permissionCheck:admin'],function(){
+        Route::get('/', function () {
+            return view('layouts.AdminMaster');
+        });
+        Route::Resource('/course', CourseController::class);
+        Route::Resource('/account', AccountController::class);
+        Route::post('/find', [AccountController::class,'indexfind'])->name('find');
+        Route::get('/export', [AccountController::class,'export'])->name('export');
+        Route::get('/import', [AccountController::class,'import'])->name('import');
 
     
- });
+    
+    });
+    Route::group(['prefix'=>'student','middleware' => 'CheckloginMiddleware'],function(){
+        Route::get('/', function () {
+            return view('layouts.AdminMaster');
+        });
+        Route::Resource('/account', AccountController::class);
+        Route::post('/find', [AccountController::class,'indexfind'])->name('find');
+        Route::get('/export', [AccountController::class,'export'])->name('export');
+        Route::get('/import', [AccountController::class,'import'])->name('import');
+    
+    
+    });
+
+});
+
+//  Route::get('/hehe', function () {
+//     return view('pagesCourse.addcourse');
+// });

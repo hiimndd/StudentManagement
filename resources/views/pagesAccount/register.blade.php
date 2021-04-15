@@ -82,12 +82,19 @@
                     </div>
                     </div>
                 @endif
-                <button type="submit" class="btn btn-primary btn-user btn-block">
+                <button  type="submit" class="btn btn-primary btn-user btn-block">
                     Đăng ký tài khoản
                 </button>
 
 
             </form>
+            @if(isset($loi))
+                    <div class="form-row">
+                    <div class="alert alert-danger">
+                    {{$loi}}
+                    </div>
+                    </div>
+                @endif
             <hr>
             @if(session('notification'))
                 <div class="alert alert-success">

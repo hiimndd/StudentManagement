@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -54,6 +55,28 @@ class AccountController extends Controller
             'password_confirmation.same' => 'Nhập sai khi xác nhận mật khẩu',
             'permission.required' => 'Xác định vai trò của tài khoản',
         ]);
+        // $validator = Validator::make($request->all(), [
+        //     'email' => 'required|email|unique:accounts,email',
+        //     'username' => "required|unique:accounts,username",
+        //     'password' => 'required',
+        //     'password_confirmation' => 'required_with:password|same:password',
+        //     'permission' => 'required',
+        // ]);
+        // if($validatedData = $request->validate([
+        //     'bill_number.*'=>'required|date',
+        //     'description.*'=>'required',
+        //  'image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]))
+        //     {
+        //             return redirect('/employee/home')->withInput()->with('alert-success','Application is sent for approval');
+        //     }else{
+        //             return redirect('/employee/home')->wihtInput()->with('error');
+        // }
+    
+        // if ($validator->fails()) {
+        //     return view('pagesAccount.indexAccount',['loi'=>"ádasdabsdv"]);
+        // }
+        
         
         $data = new User();
         $data->name = $request->name;
@@ -148,23 +171,8 @@ class AccountController extends Controller
         
         return view('pagesAccount.indexAccount',['account'=>$account]);
     }
-    public function postlogin(Request $request){
-        
-         if(Auth::attempt(['username' => $request->username, 'password' => $request->password], true)){
-             
-         
-             return redirect()->route('account.index')->with('notification','Wellcome');
-         }
-         else {
-             return redirect()->route('login')->with('notification','Sai tên đăng nhập hoặt mật khẩu!');
-         }
-    }
-    public function loguot(){
-        // Auth::guard('backend')->loguot();
-        Auth::logout();
-        return redirect()->route('login');
-    }
-    public function impoort(){
+    
+    public function import(){
         
     }
     public function export(){
