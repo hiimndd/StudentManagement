@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
-
-class CourseController extends Controller
+use App\Models\Classn;
+class ClassController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $data = Course::all();
-        return view('pagesCourse.indexcourse',['data'=>$data]);
+        $data = Classn::join('courses', 'classns.course_id', '=', 'courses.id')
+                    ->get();
+        return view('pagesClass.indexclass',['data'=>$data]);
     }
 
     /**
@@ -26,7 +27,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('pagesCourse.addcourse');
+        $course = Course::All();
+        return view('pagesClass.addclass',['course'=>$course]);
     }
 
     /**
@@ -39,19 +41,22 @@ class CourseController extends Controller
     {
         $this->validate($request,
         [
-            'coursename' => 'required|unique:courses,coursename',
-            
+            'classname' => "required|unique:classns,classname",
+            'coursename' =>'required',
+
         ],[
-            'coursename.unique' => 'Trùng tên khóa học',
-            'coursename.required' => 'Chúng tôi cần biết tên khóa học',
-           
+            
+            'classname.required' => 'Không bỏ tên lớp',
+            'classname.unique' => 'Trùng tên lớp',
+            'coursename.required' => 'Hãy chọn tên khóa học',
         ]);
-        
-        $data = new Course();
-        $data->coursename = $request->coursename;
+
+        $data = new Classn();
+        $data->classname = $request->classname;
+        $data->course_id = $request->coursename;
 
         $data->save();
-        return redirect()->route('course.create')->with('notification','Thêm thành công');
+        return redirect()->route('class.create')->with('notification','Mở lớp thành công');
     }
 
     /**

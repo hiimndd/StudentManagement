@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountClassnTable extends Migration
+class CreateClassnUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAccountClassnTable extends Migration
      */
     public function up()
     {
-        Schema::create('account_classn', function (Blueprint $table) {
+        Schema::create('classn_user', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('account_id')->unsigned()->index();
-            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->integer('classn_id')->unsigned()->index();
             $table->foreign('classn_id')->references('id')->on('classns')->onDelete('cascade');
@@ -31,6 +31,6 @@ class CreateAccountClassnTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('account_classn');
+        Schema::dropIfExists('classn_user');
     }
 }

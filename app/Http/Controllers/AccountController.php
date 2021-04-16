@@ -40,8 +40,8 @@ class AccountController extends Controller
     {
         $this->validate($request,
         [
-            'email' => 'required|email|unique:accounts,email',
-            'username' => "required|unique:accounts,username",
+            'email' => 'required|email|unique:users,email',
+            'username' => "required|unique:users,username",
             'password' => 'required',
             'password_confirmation' => 'required_with:password|same:password',
             'permission' => 'required',
@@ -128,7 +128,7 @@ class AccountController extends Controller
         
         $this->validate($request,
         [
-            'email' => "required|email|unique:accounts,email,$id",
+            'email' => "required|email|unique:users,email,$id",
             'name' => "required",
             'birthday' => 'required',
         ],[

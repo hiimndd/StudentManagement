@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ClassController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +49,7 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         });
         Route::Resource('/course', CourseController::class);
         Route::Resource('/account', AccountController::class);
+        Route::Resource('/class', ClassController::class);
         Route::post('/find', [AccountController::class,'indexfind'])->name('find');
         Route::get('/export', [AccountController::class,'export'])->name('export');
         Route::get('/import', [AccountController::class,'import'])->name('import');

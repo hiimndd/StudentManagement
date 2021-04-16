@@ -2,7 +2,7 @@
 @extends('layouts.Adminmaster')
 @section('Adminmaster')
 <div class="container">
-  <h2>Danh sách sinh viên</h2>
+  <h2>DANH SÁCH LỚP HỌC</h2>
   
   
   
@@ -12,21 +12,20 @@
   <table class="table table-striped">
   <thead>
       <tr>
+        <th>Tên lớp </th>
         <th>Khóa học</th>
-        <th>Số lớp đăng ký hóa học</th>
-        <th>Tổng số sinh viên đăng ký khóa học</th>
+        <th>Tổng sinh viên</th>
         <th><th>
         <th><th>
       </tr>
     </thead>
   <tbody>
-  <?php 
-
-          ?>
+ 
         @foreach($data as $row)
         <tr>
+        <td>{{ $row->classname }}</td>
         <td>{{ $row->coursename }}</td>
-        <td>{{ count($row->classn) }}</td>
+        <td>{{ count($row->user) }}</td>
         
         <td>
         

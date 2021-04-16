@@ -15,9 +15,8 @@ class CreateTimesTable extends Migration
     {
         Schema::create('times', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('timeto');
-            $table->integer('timego');
-            $table->datetime('datelearn');
+            $table->integer('lesson');
+            $table->string('weekdays');
             $table->timestamps();
         });
     }
