@@ -5,6 +5,8 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\TimeController;
+use App\Http\Controllers\RoomController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +52,8 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         Route::Resource('/course', CourseController::class);
         Route::Resource('/account', AccountController::class);
         Route::Resource('/class', ClassController::class);
+        Route::Resource('/room', RoomController::class);
+        Route::Resource('/time', TimeController::class);
         Route::get('/classed/{id}', [ClassController::class,'EditStudent'])->name('classed');
         Route::put('/classud/{id}', [ClassController::class,'UpdateStudent'])->name('classud');
 

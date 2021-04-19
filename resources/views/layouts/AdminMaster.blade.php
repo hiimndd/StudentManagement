@@ -103,6 +103,7 @@
                     </div>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -121,7 +122,38 @@
                 </div>
             </li>
             <!-- Nav Item - Charts -->
-            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseroom"
+                    aria-expanded="true" aria-controls="collapseroom">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Quản lý phòng học</span>
+                </a>
+                <div id="collapseroom" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Danh mục:</h6>
+                        <a class="collapse-item" href="{{route('room.create')}}">Tạo phòng</a>
+                        <a class="collapse-item" href="{{route('room.index')}}">Danh sách phòng học</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTKB"
+                    aria-expanded="true" aria-controls="collapseTKB">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Quản lý lịch học</span>
+                </a>
+                <div id="collapseTKB" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Danh mục:</h6>
+                        <a class="collapse-item" href="{{route('time.create')}}">Thêm lịch học</a>
+                        <a class="collapse-item" href="{{route('time.index')}}">Danh sách lịch học</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
