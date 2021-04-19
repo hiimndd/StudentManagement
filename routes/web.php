@@ -50,6 +50,9 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         Route::Resource('/course', CourseController::class);
         Route::Resource('/account', AccountController::class);
         Route::Resource('/class', ClassController::class);
+        Route::get('/classed/{id}', [ClassController::class,'EditStudent'])->name('classed');
+        Route::put('/classud/{id}', [ClassController::class,'UpdateStudent'])->name('classud');
+
         Route::post('/find', [AccountController::class,'indexfind'])->name('find');
         Route::get('/export', [AccountController::class,'export'])->name('export');
         Route::get('/import', [AccountController::class,'import'])->name('import');

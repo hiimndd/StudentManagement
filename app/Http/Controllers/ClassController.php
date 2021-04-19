@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Classn;
+use App\Models\User;
 class ClassController extends Controller
 {
     /**
@@ -15,8 +16,7 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $data = Classn::join('courses', 'classns.course_id', '=', 'courses.id')
-                    ->get();
+        $data = Classn::All();    
         return view('pagesClass.indexclass',['data'=>$data]);
     }
 
@@ -67,7 +67,9 @@ class ClassController extends Controller
      */
     public function show($id)
     {
-        //
+        $class = Classn::All()
+        ->where('id', '=', $id);   
+        return view('pagesClass.showclass',['class'=>$class]);
     }
 
     /**
@@ -78,7 +80,10 @@ class ClassController extends Controller
      */
     public function edit($id)
     {
-        //
+        $class = Classn::find($id)->toArray();
+        $course = Course::All()->where('id', '=',$class['course_id'] );
+        $courselist = Course::All()->where('id', '!=',$class['course_id'] );
+        return view('pagesClass.editclass',['class'=>$class,'course'=>$course,'courselist'=>$courselist]);
     }
 
     /**
@@ -90,7 +95,22 @@ class ClassController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $class = Classn::find($id);
+        
+        $this->validate($request,
+        [
+            'classname' => "required|unique:classns,classname,$id",
+        ],[
+            
+            'classname.required' => 'Không bỏ tên lớp',
+            'classname.unique' => 'Trùng tên lớp khác',
+        ]);
+       
+        $class->classname = $request->classname;
+        $class->course_id = $request->coursename;
+        
+        $class->save();
+        return redirect()->route('class.index')->with('notification','cập nhât thành công!');
     }
 
     /**
@@ -101,6 +121,40 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $class = Classn::find($id);
+        $class->delete();
+        return redirect()->route('class.index')->with('notification','Xóa thành công!');
     }
+    public function EditStudent($id)
+    {
+        $user = User::find($id)->toArray();
+        return view('pagesClass.editstudent',['user'=>$user]);
+    }
+    public function UpdateStudent(Request $request, $id)
+    {
+        $user = User::find($id);
+        
+        $this->validate($request,
+        [
+            'email' => "required|email|unique:users,email,$id",
+            'name' => "required",
+            'birthday' => 'required',
+        ],[
+            'email.unique' => 'Email này đã được sử dụng',
+            'email.required' => 'Chúng tôi cần biết email của tài khoản',
+            'email.email' => 'Email không đúng định dạng',
+            'name.required' => 'Không bỏ trống tên đăng nhập',
+            'birthday.required' => 'Đừng bỏ trắng dòng này ',
+            
+        ]);
+       
+        $user->name = $request->name;
+        $user->birthday = $request->birthday;
+        $user->email = $request->email;
+        
+        
+        $user->save();
+        return redirect()->back()->with('notification','Sữa thành công!');
+    }
+    
 }

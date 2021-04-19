@@ -2,16 +2,17 @@
 @section('Adminmaster')
 <div class="container">
 
+    <h2>Cập nhật thông tin lớp học</h2>
     
-    <h2>MỞ LỚP</h2>
-    
-  <form action="{{route('class.store')}}" method="POST">
+  <form action="{{route('class.update',$class['id'])}}" method="POST">
+  @method('put')
   @csrf
     <div class="form-group">
-    
-      <label for="hoten">Tên Lớp :</label>
-      
-      <input type="text" class="form-control" id="hoten"  value="" placeholder="Tên lớp" name="classname">
+    <label for="malop">Mã lớp :</label>
+      <input disabled type="text" class="form-control" id="id"  value="{{ $class['id'] }}" placeholder="" name="id">
+
+      <label for="tenlop">Tên Lớp :</label>
+      <input type="text" class="form-control" id="classname"  value="{{ $class['classname'] }}" placeholder="Tên lớp" name="classname">
       @if($errors->has('classname'))
         <div class="form-row">
         <div class="alert alert-danger">
@@ -23,23 +24,24 @@
     <div class="form-group">
         <label for="classname">Tên khóa học :</label>
         <div class="form-row">
-        
         <select name="coursename" class="form-control formselect required" placeholder="Select Category"
             id="sub_category_name">
-            <option   value="0" disabled selected>Chọn khóa học</option>
+            
+            <option   value="0" disabled >Chọn khóa học</option>
                 @foreach($course as $row)
-                    <option  value="{{ $row->id }}">
+                
+                    <option selected value="{{ $row->id }}">
                         {{ ucfirst($row->coursename) }}
                     </option>
                 @endforeach
+                @foreach($courselist as $row)
+                    <option value="{{ $row->id }}">
+                        {{ ucfirst($row->coursename) }}
+                    </option>
+                @endforeach
+                    
         </select>
-        @if($errors->has('coursename'))
-        <div class="form-row">
-        <div class="alert alert-danger">
-          {{$errors->first('coursename')}}
-        </div>
-        </div>
-        @endif
+        
         
         </div>
       
@@ -48,12 +50,12 @@
     
   
     <button type="submit" class="btn btn-primary btn-user btn-block">
-                    Thêm khóa học
+                    Cập nhật 
                 </button>
     
 
   </form>
-  
+  <a href="{{route('class.index')}}"><button type="button" class="btn btn-default" name="bttxt">Trở về</button></a>
   
   @if(session('notification'))
     <div class="alert alert-success">

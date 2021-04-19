@@ -159,7 +159,7 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
     public function indexfind(Request $request){
         // $account =array();
@@ -178,4 +178,5 @@ class AccountController extends Controller
     public function export(){
         
     }
+    
 }

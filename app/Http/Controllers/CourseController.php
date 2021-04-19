@@ -16,6 +16,7 @@ class CourseController extends Controller
     public function index()
     {
         $data = Course::all();
+        
         return view('pagesCourse.indexcourse',['data'=>$data]);
     }
 
@@ -62,7 +63,10 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $course = Course::All()
+        ->where('id', '=', $id);   
+        return view('pagesCourse.showcourse',['course'=>$course]);
     }
 
     /**
@@ -73,7 +77,8 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        return view('pagesCourse.editcourse',['course'=>$course]);
     }
 
     /**
@@ -85,7 +90,20 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::find($id);
+        
+        $this->validate($request,
+        [
+            'coursename' => 'required',
+            'coursename' => "required|unique:courses,coursename,$id"
+        ],[
+            'coursename.required' => 'Không bỏ trống tên khóa học',
+            'coursename.unique' => 'Khóa học này đã tồn tại'
+        ]);
+        
+        $course->coursename = $request->coursename;
+        $course->save();
+        return redirect()->route('course.index',$id)->with('notification','Sữa thành công!');
     }
 
     /**
@@ -96,6 +114,8 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        $course->delete();
+        return redirect()->route('course.index')->with('notification','Xóa thành công!');
     }
 }
