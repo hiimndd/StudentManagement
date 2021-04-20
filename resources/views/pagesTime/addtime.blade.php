@@ -76,9 +76,9 @@
             <option value="1">Tiết 1(9:00-10:30)</option>
             <option value="2">Tiết 2(10:30-:12:00)</option>
             <option value="3">Tiết 3(14:00-15:30)</option>
-            <option value="5">Tiết 4(15:30-17:00)</option>
-            <option value="6">Tiết 5(17:00-18:30)</option>
-            <option value="7">Tiết 6(18:30-20:00)</option>
+            <option value="4">Tiết 4(15:30-17:00)</option>
+            <option value="5">Tiết 5(17:00-18:30)</option>
+            <option value="6">Tiết 6(18:30-20:00)</option>
         </select>
         @if($errors->has('lesson'))
         <div class="form-row">

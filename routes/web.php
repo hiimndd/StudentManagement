@@ -5,6 +5,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\Registercontroller;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\RoomController;
 /*
@@ -54,12 +55,16 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         Route::Resource('/class', ClassController::class);
         Route::Resource('/room', RoomController::class);
         Route::Resource('/time', TimeController::class);
+        Route::Resource('/register', Registercontroller::class);
+       
         Route::get('/classed/{id}', [ClassController::class,'EditStudent'])->name('classed');
         Route::put('/classud/{id}', [ClassController::class,'UpdateStudent'])->name('classud');
 
         Route::post('/find', [AccountController::class,'indexfind'])->name('find');
         Route::get('/export', [AccountController::class,'export'])->name('export');
         Route::get('/import', [AccountController::class,'import'])->name('import');
+        Route::post('/get-classes', [Registercontroller::class,'getClassesByCourseId']);
+        
 
     
     

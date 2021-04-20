@@ -18,15 +18,17 @@ class TimeController extends Controller
      */
     public function index()
     {
-        $class = Room::find(2)->classn(
-            
-        );
+        
+        
+        
+
+        $class = Room::find(1)->with('classn.time')->get()->toArray();
         
         return view('pagesTime.indextime',['class'=>$class]);
     }
     public function indexfind()
     {
-        $class = Claasn::all();
+        $class = Classn::all();
         
         return view('pagesTime.indextime',['class'=>$class]);
     }
@@ -76,15 +78,16 @@ class TimeController extends Controller
                 
         //     }
         // }
-        
-        // $cl = Room::find($request->roomname)->classn();
+        // Room::find($request->roomname)->classn;
+        // Room::find($request->roomname)->classn()->get();
+        // $cl = Room::find($request->roomname)->with('classn.time')->get()->toArray();
         // dd($cl);
         // $room = $class->room->toArray();
         // dd($room);
         //     foreach($class->room as $row){
         //         print_r($row->toArray());
         //     }
-            
+        
         if (! ($class->time->contains($time_id[0]['id'])  ) ) {
             $class->time()->syncWithoutDetaching([$time_id[0]['id']]);
             $class->room()->syncWithoutDetaching([$request->roomname]);

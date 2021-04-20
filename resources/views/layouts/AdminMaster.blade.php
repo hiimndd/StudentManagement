@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-
-<meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -157,9 +157,9 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{route('register.create')}}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Đăng ký khóa học</span></a>
             </li>
 
             <!-- Divider -->
@@ -303,7 +303,7 @@
             </div>
         </div>
     </div>
-
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -320,6 +320,7 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('/js/demo/chart-pie-demo.js')}}"></script>
+
 
 </body>
 

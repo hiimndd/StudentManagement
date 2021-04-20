@@ -44,27 +44,19 @@ class timeseed extends Seeder
             ['id' => 23,'lesson' => '5','weekdays' => 'Thursday'],
             ['id' => 24,'lesson' => '6','weekdays' => 'Thursday'],
 
-            ['id' => 25,'lesson' => '1','weekdays' => 'Thursday'],
-            ['id' => 26,'lesson' => '2','weekdays' => 'Thursday'],
-            ['id' => 27,'lesson' => '3','weekdays' => 'Thursday'],
-            ['id' => 28,'lesson' => '4','weekdays' => 'Thursday'],
-            ['id' => 29,'lesson' => '5','weekdays' => 'Thursday'],
-            ['id' => 30,'lesson' => '6','weekdays' => 'Thursday'],
+            ['id' => 25,'lesson' => '1','weekdays' => 'Friday'],
+            ['id' => 26,'lesson' => '2','weekdays' => 'Friday'],
+            ['id' => 27,'lesson' => '3','weekdays' => 'Friday'],
+            ['id' => 28,'lesson' => '4','weekdays' => 'Friday'],
+            ['id' => 29,'lesson' => '5','weekdays' => 'Friday'],
+            ['id' => 30,'lesson' => '6','weekdays' => 'Friday'],
 
-
-            ['id' => 31,'lesson' => '1','weekdays' => 'Friday'],
-            ['id' => 32,'lesson' => '2','weekdays' => 'Friday'],
-            ['id' => 33,'lesson' => '3','weekdays' => 'Friday'],
-            ['id' => 34,'lesson' => '4','weekdays' => 'Friday'],
-            ['id' => 35,'lesson' => '5','weekdays' => 'Friday'],
-            ['id' => 36,'lesson' => '6','weekdays' => 'Friday'],
-
-            ['id' => 37,'lesson' => '1','weekdays' => 'Saturday'],
-            ['id' => 38,'lesson' => '2','weekdays' => 'Saturday'],
-            ['id' => 39,'lesson' => '3','weekdays' => 'Saturday'],
-            ['id' => 40,'lesson' => '4','weekdays' => 'Saturday'],
-            ['id' => 41,'lesson' => '5','weekdays' => 'Saturday'],
-            ['id' => 42,'lesson' => '6','weekdays' => 'Saturday'],
+            ['id' => 31,'lesson' => '1','weekdays' => 'Saturday'],
+            ['id' => 32,'lesson' => '2','weekdays' => 'Saturday'],
+            ['id' => 33,'lesson' => '3','weekdays' => 'Saturday'],
+            ['id' => 34,'lesson' => '4','weekdays' => 'Saturday'],
+            ['id' => 35,'lesson' => '5','weekdays' => 'Saturday'],
+            ['id' => 36,'lesson' => '6','weekdays' => 'Saturday'],
             
             
         ]);
