@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Classn;
 use App\Models\Course;
+use App\Models\Time;
 
 class TimeController extends Controller
 {
@@ -17,9 +18,18 @@ class TimeController extends Controller
      */
     public function index()
     {
-        return view('pagesTime.indextime');
+        $class = Room::find(2)->classn(
+            
+        );
+        
+        return view('pagesTime.indextime',['class'=>$class]);
     }
-
+    public function indexfind()
+    {
+        $class = Claasn::all();
+        
+        return view('pagesTime.indextime',['class'=>$class]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -55,12 +65,34 @@ class TimeController extends Controller
             'weekdays.required' => 'Hãy chọn thứ trong tuần',
         ]);
         
-        $data = new Classn();
-        $data->classname = $request->classname;
-        $data->course_id = $request->coursename;
-
-        $data->save();
-        return redirect()->route('class.create')->with('notification','Mở lớp thành công');
+        
+        $time_id = Time::where(['lesson' => $request->lesson, 'weekdays' => $request->weekdays])->get()->toArray(); 
+        
+        $class = Classn::find($request->classname);
+        // $classall = Classn::All();
+        // foreach($classall as $row){
+        //     foreach($row->time as $row){
+        //         print_r($row->toArray()['pivot']['id']."<br>");
+                
+        //     }
+        // }
+        
+        // $cl = Room::find($request->roomname)->classn();
+        // dd($cl);
+        // $room = $class->room->toArray();
+        // dd($room);
+        //     foreach($class->room as $row){
+        //         print_r($row->toArray());
+        //     }
+            
+        if (! ($class->time->contains($time_id[0]['id'])  ) ) {
+            $class->time()->syncWithoutDetaching([$time_id[0]['id']]);
+            $class->room()->syncWithoutDetaching([$request->roomname]);
+        }else{
+            return redirect()->route('time.create')->with('notificationer','Trùng lịch học, hãy chọn lịch trống!');
+        }
+        
+        return redirect()->route('time.create')->with('notification','Đăng ký lịch học thành công');
     }
 
     /**

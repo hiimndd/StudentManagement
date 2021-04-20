@@ -4,7 +4,16 @@
 
     
     <h2>Đăng ký lịch học</h2>
-    
+    @if(session('notification'))
+    <div class="alert alert-success">
+      {{session('notification')}}
+    </div>
+     @endif
+     @if(session('notificationer'))
+    <div class="alert alert-danger">
+      {{session('notificationer')}}
+    </div>
+     @endif
   <form action="{{route('time.store')}}" method="POST">
   @csrf
     <div class="form-group">
@@ -64,13 +73,12 @@
         <select name="lesson" class="form-control formselect required" placeholder="Select Category"
             id="sub_category_name">
             <option   value="0" disabled selected>Chọn tiết học</option>
-            <option value="1">Tiết 1(7:00-8:30)</option>
-            <option value="2">Tiết 2(8:30-:10:00)</option>
-            <option value="3">Tiết 3(10:00-11:30)</option>
-            <option value="4">Tiết 4(14:00-15:30)</option>
-            <option value="5">Tiết 5(15:30-17:30)</option>
-            <option value="6">Tiết 6(17:00-18:30)</option>
-            <option value="7">Tiết 7(18:30-20:30)</option>
+            <option value="1">Tiết 1(9:00-10:30)</option>
+            <option value="2">Tiết 2(10:30-:12:00)</option>
+            <option value="3">Tiết 3(14:00-15:30)</option>
+            <option value="5">Tiết 4(15:30-17:00)</option>
+            <option value="6">Tiết 5(17:00-18:30)</option>
+            <option value="7">Tiết 6(18:30-20:00)</option>
         </select>
         @if($errors->has('lesson'))
         <div class="form-row">
@@ -120,11 +128,7 @@
   </form>
   
   
-  @if(session('notification'))
-    <div class="alert alert-success">
-      {{session('notification')}}
-    </div>
-  @endif
+  
 </div>
 </div>
 @endsection

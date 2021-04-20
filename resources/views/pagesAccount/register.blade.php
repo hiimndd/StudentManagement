@@ -16,14 +16,14 @@
             @csrf
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input name="name" type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Họ tên">
+                        <input name="name" type="text" class="form-control form-control-user" value ="{{old('name')}}" id="exampleFirstName" placeholder="Họ tên">
                     </div>
                     <div class="col-sm-6">
-                        <input type="date" name="birthday" class="form-control form-control-user" id="exampleLastName" placeholder="Ngày sinh">
+                        <input type="date" name="birthday" class="form-control form-control-user" value ="{{old('birthday')}}" id="exampleLastName" placeholder="Ngày sinh">
                     </div>
                 </div>
                 <div class="form-group">
-                    <input name="username" type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Tên đăng nhập">
+                    <input name="username" type="text" class="form-control form-control-user" id="exampleInputEmail" value ="{{old('username')}}" placeholder="Tên đăng nhập">
                 </div>
                 @if($errors->has('username'))
                     <div class="form-row">

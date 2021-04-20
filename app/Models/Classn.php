@@ -14,7 +14,7 @@ class Classn extends Model
     }
     public function time()
     {
-        return $this->belongsToMany(Time::class);
+        return $this->belongsToMany(Time::class)->withPivot('id');
     }
     public function room()
     {
@@ -24,4 +24,5 @@ class Classn extends Model
     {
         return $this->hasOne(Course::class,'id','course_id');
     }
+    
 }

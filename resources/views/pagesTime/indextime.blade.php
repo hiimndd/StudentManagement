@@ -37,6 +37,10 @@
         <li><span>17:00</span></li>
         <li><span>17:30</span></li>
         <li><span>18:00</span></li>
+        <li><span>18:30</span></li>
+        <li><span>19:00</span></li>
+        <li><span>19:30</span></li>
+        <li><span>20:00</span></li>
       </ul>
     </div> <!-- .cd-schedule__timeline -->
   
@@ -44,7 +48,7 @@
       <ul>
         <li class="cd-schedule__group">
           <div class="cd-schedule__top-info"><span>Monday</span></div>
-  
+          {{ dd($class)}}
           <ul>
             <li class="cd-schedule__event">
               <a data-start="09:30" data-end="11:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
@@ -233,7 +237,7 @@
   
     <div class="cd-schedule__cover-layer"></div>
   </div> <!-- .cd-schedule -->
-  
+ 
 
   <script src="{{asset('js/util.js')}}"></script> <!-- util functions included in the CodyHouse framework -->
   <script src="{{asset('js/main.js')}}"></script>
