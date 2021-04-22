@@ -22,6 +22,6 @@ class permissionCheck
         if(in_array(Auth::user()->getpermission(), $role)){
             return $next($request);
         }
-        return redirect()->route('student');
+        return redirect()->route('erorr404');
     }
 }

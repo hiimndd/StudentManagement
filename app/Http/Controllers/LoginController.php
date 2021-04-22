@@ -16,12 +16,15 @@ class LoginController extends Controller
            if(Auth::user()->permission === 1){
                return redirect()->route('account.index')->with('notification','Wellcome');
            }else{
-               return redirect()->route('student');
+               return redirect()->route('schedule.index');
            }
              
         }
         else {
-            return redirect()->route('login')->with('notification','Sai tên đăng nhập hoặt mật khẩu!');
+           
+            return back()->withErrors([
+                'password' => ['Sai tên đăng nhập hoặt mật khẩu!']
+            ]);
         }
    }
    public function loguotadmin(){

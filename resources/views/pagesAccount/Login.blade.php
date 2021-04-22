@@ -47,9 +47,11 @@
                                     <form action ="{{route('postlogin')}}" method ="POST" class="user">
                                     @csrf
                                         <div class="form-group">
-                                            <input type="text" name ="username" class="form-control form-control-user"
+                                            <input type="text"  name ="username"  class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter user name...">
+                                                placeholder="Enter user name..."
+                                                value="{{old('username')}}"
+                                                >
                                         </div>
                                         <div class="form-group">
                                             <input name ="password" type="password" class="form-control form-control-user"
@@ -68,13 +70,15 @@
                                         <hr>
                                         
                                     </form>
-                                    
-
-                                    @if(session('notification'))
-                                        <div class="alert alert-success">
-                                        {{session('notification')}}
-                                        </div>
+                                    @if($errors->has('newpass'))
+                                    <div class="form-row">
+                                    <div class="alert alert-danger">
+                                    {{$errors->first('newpass')}}
+                                    </div>
+                                    </div>
                                     @endif
+
+                                    
                                     
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>

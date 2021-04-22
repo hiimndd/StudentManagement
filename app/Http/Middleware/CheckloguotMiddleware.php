@@ -21,7 +21,7 @@ class CheckloguotMiddleware
             if(Auth::user()->permission == 1){
                 return redirect()->route('account.index');
             }else{
-                return redirect()->route('student');
+                return redirect()->route('schedule.index');
             }
 
             return redirect()->route('account.index');

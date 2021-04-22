@@ -5,9 +5,11 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Registercontroller;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,17 +69,23 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
     
     
     });
-    Route::group(['prefix'=>'student','middleware' => 'CheckloginMiddleware'],function(){
+    Route::group(['prefix'=>'student','middleware' => 'permissionCheck:student'],function(){
         Route::get('/', function () {
             return view('layouts.AdminMaster');
         });
-        Route::Resource('/account', AccountController::class);
+        Route::Resource('/schedule', StudentController::class);
         Route::post('/find', [AccountController::class,'indexfind'])->name('find');
         Route::get('/export', [AccountController::class,'export'])->name('export');
         Route::get('/import', [AccountController::class,'import'])->name('import');
     
     
     });
+    Route::get('/404', function () {
+        return view('404');
+    })->name('erorr404');
+    Route::Resource('/profile', ProfileController::class);
+    Route::get('/profilepc/{id}', [ProfileController::class,'editpassword'])->name('profilepc');
+    Route::post('/profilestore/{id}', [ProfileController::class,'storepassword'])->name('profilestore');
 
 });
 

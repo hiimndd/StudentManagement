@@ -32,6 +32,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Classn::class);
     }
+
+
     public function getpermission()
     {
         $permission = array_flip(config('permission'));
