@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class Registercontroller extends Controller
@@ -48,7 +49,30 @@ class Registercontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,
+        [
+            'id' => "required",
+            'coursename' =>'required',
+            'classname' =>'required',
+
+        ],[
+            
+            'coursename.required' => 'Hãy chọn khóa học mong muốn',
+            'id.required' => 'Nhập mã sinh viên',
+            'classname.required' => 'chọn tên lớp',
+        ]);
+        
+        $id = User::where(['id' => $request->id, 'permission' => 2])->get(); 
+        if(count($id) == 0){
+            return redirect()->route('register.create')->with('notificationer','Mã sinh viên chưa được đăng ký');
+        }
+
+       
+        
+
+        $data = User::find($request->id);
+        $data->classn()->syncWithoutDetaching([$request->classname]);
+        return redirect()->route('register.create',$request->classname)->with('notification','Đăng ký thành công');
     }
 
     /**

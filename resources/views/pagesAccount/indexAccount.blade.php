@@ -22,27 +22,23 @@
                 <select name="permission" class="form-control formselect required" placeholder="Select Category"
                 id="sub_category_name">
                 
-                    
-                    @if(count($account) == 1)
-
-                        
-                        @foreach($account as $row)
-
-                            @if($row->permission == 1)
-                                <option   value="0" >Account All</option>
-                                <option  value="1" selected > admin</option>
-                                <option  value="2">student</option>
-                            @else
-                                <option   value="0" >Account All</option>
-                                <option  value="1" >admin</option>
-                                <option  value="2" selected >student</option>
-                            @endif
-                        @endforeach
+                @if(isset($permission)){
+                    @if($permission == 1)
+                        <option   value="0" >Account All</option>
+                        <option  value="1" selected > admin</option>
+                        <option  value="2">student</option>
                     @else
-                        <option   value="0" selected >Account All</option>
+                        <option   value="0" >Account All</option>
                         <option  value="1" >admin</option>
-                        <option  value="2"  >student</option>
+                        <option  value="2" selected >student</option>
                     @endif
+                
+                @else
+                    <option   value="0" selected >Account All</option>
+                    <option  value="1" >admin</option>
+                    <option  value="2"  >student</option>
+                @endif    
+                    
                 </select>
                
         
@@ -53,15 +49,9 @@
                 </button>
                 <hr>
             </form>
-            <form action="{{route('import')}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="file" name="file" accept=".xlsx"><br>
-            <input type="submit" value="Import CSV" name="import" class="btn btn-warning">
-                </form>
-            <form action="{{route('export')}}" method="POST">
-                @csrf
-            <input type="submit" value="Export CSV" name="export" class="btn btn-success">
-            </form>
+            
+                
+            
             
             </div>
             </div>

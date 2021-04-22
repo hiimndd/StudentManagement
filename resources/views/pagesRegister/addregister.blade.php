@@ -4,23 +4,33 @@
 
     
     <h2>Đăng ký lớp học</h2>
-    @if(session('notification'))
-    <div class="alert alert-success">
-      {{session('notification')}}
+    
+     <form action="{{route('register.store')}}" method="POST">
+    @csrf
+    <div class="form-group">
+    
+      <label for="hoten">Nhập mã số sinh viên :</label>
+      
+      <input type="text" class="form-control" id="id"  value="{{old('id')}}" placeholder="Mã số sinh viên" name="id">
+      @if($errors->has('id'))
+        <div class="form-row">
+        <div class="alert alert-danger">
+          {{$errors->first('id')}}
+        </div>
+        </div>
+      @endif 
+      @if(session('notificationer'))
+      <div class="alert alert-danger">
+        {{session('notificationer')}}
+      </div>
+      @endif
     </div>
-     @endif
-     @if(session('notificationer'))
-    <div class="alert alert-danger">
-      {{session('notificationer')}}
-    </div>
-     @endif
-
 
     <div class="form-group">
         <label for="classname">Chọn Khóa học :</label>
         <div class="form-row">
     
-        <select name="namecourse" class="form-control formselect required" placeholder="Select Category"
+        <select name="coursename" class="form-control formselect required" placeholder="Select Category"
             id="sub_category_name">
             <option   value="0" disabled selected>Chọn khóa học</option>
                 @foreach($course as $row)
@@ -50,7 +60,13 @@
         <select name="classname" class="form-control formselect required" placeholder="Select Category" id="sub_category">
             
         </select>
-        
+        @if($errors->has('classname'))
+        <div class="form-row">
+        <div class="alert alert-danger">
+          {{$errors->first('classname')}}
+        </div>
+        </div>
+        @endif
         
         </div>
       
@@ -62,9 +78,14 @@
     
   
     <button type="submit" class="btn btn-primary btn-user btn-block">
-                    Lên lịch học
+                    Đăng ký
                 </button>
-    
+    </form>
+    @if(session('notification'))
+    <div class="alert alert-success">
+      {{session('notification')}}
+    </div>
+  @endif
 
   
                 

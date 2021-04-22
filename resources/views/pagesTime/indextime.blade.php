@@ -1,4 +1,3 @@
-                     
 @extends('layouts.Adminmaster')
 @section('Adminmaster')
 
@@ -443,8 +442,3 @@
   <script src="{{asset('js/main.js')}}"></script>
 </body>
 @endsection
-
-
-
-
-                                      

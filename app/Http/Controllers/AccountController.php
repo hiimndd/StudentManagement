@@ -164,19 +164,13 @@ class AccountController extends Controller
     public function indexfind(Request $request){
         // $account =array();
         if($request->permission == 0){
-            $account = User::All();
+            return redirect()->route('account.index');
         }else{
             $account = User::All()->where('permission', '=', $request->permission);
         }
-        
-        return view('pagesAccount.indexAccount',['account'=>$account]);
+        return view('pagesAccount.indexAccount',['account'=>$account, 'permission' => $request->permission]);
     }
     
-    public function import(){
-        
-    }
-    public function export(){
-        
-    }
+    
     
 }

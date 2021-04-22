@@ -12,7 +12,7 @@ class LoginController extends Controller
         
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password], true)){
             
-           echo Auth::user()->permission;
+           
            if(Auth::user()->permission === 1){
                return redirect()->route('account.index')->with('notification','Wellcome');
            }else{

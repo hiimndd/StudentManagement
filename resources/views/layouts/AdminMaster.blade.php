@@ -59,7 +59,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     <span>Quản trị Tài khoản</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -74,7 +74,7 @@
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     <span>Tài khoản cá nhân</span></a>
             </li>
             
@@ -85,7 +85,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                QUẢN LÝ
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -93,7 +93,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Quản lý lớp học</span>
+                    <span>Lớp Học</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -107,8 +107,8 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Quản lý khóa học</span>
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Khóa Học</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
@@ -116,8 +116,6 @@
                         <h6 class="collapse-header">Danh mục khóa học:</h6>
                         <a class="collapse-item" href="{{route('course.create')}}">Thêm khóa học</a>
                         <a class="collapse-item" href="{{route('course.index')}}">Danh sách khóa học</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
                 </div>
             </li>
@@ -126,7 +124,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseroom"
                     aria-expanded="true" aria-controls="collapseroom">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Quản lý phòng học</span>
+                    <span>Phòng Học</span>
                 </a>
                 <div id="collapseroom" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -140,8 +138,8 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTKB"
                     aria-expanded="true" aria-controls="collapseTKB">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Quản lý lịch học</span>
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Lịch Học</span>
                 </a>
                 <div id="collapseTKB" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
@@ -149,18 +147,27 @@
                         <h6 class="collapse-header">Danh mục:</h6>
                         <a class="collapse-item" href="{{route('time.create')}}">Thêm lịch học</a>
                         <a class="collapse-item" href="{{route('time.index')}}">Danh sách lịch học</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsestudent"
+                    aria-expanded="true" aria-controls="collapsestudent">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Học Viên</span>
+                </a>
+                <div id="collapsestudent" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Danh mục:</h6>
+                        <a class="collapse-item" href="{{route('register.create')}}">Đăng ký khóa học</a>
+                        <a class="collapse-item" href="{{route('time.index')}}">Danh sách học viên</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('register.create')}}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Đăng ký khóa học</span></a>
-            </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

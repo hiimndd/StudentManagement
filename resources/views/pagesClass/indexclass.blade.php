@@ -23,7 +23,7 @@
         <tr align="center">
         <td>{{ $row->classname }}</td>
         <td>{{ $row->course->coursename }}</td>
-        <td>{{ count($row->user) }}</td>
+        <td>{{ count($row->user) }}/10</td>
         
         <td>
         

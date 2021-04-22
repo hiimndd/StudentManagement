@@ -61,8 +61,6 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         Route::put('/classud/{id}', [ClassController::class,'UpdateStudent'])->name('classud');
 
         Route::post('/find', [AccountController::class,'indexfind'])->name('find');
-        Route::get('/export', [AccountController::class,'export'])->name('export');
-        Route::get('/import', [AccountController::class,'import'])->name('import');
         Route::post('/get-classes', [Registercontroller::class,'getClassesByCourseId']);
         
 

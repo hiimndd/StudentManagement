@@ -30,7 +30,7 @@
         <tr>
         <td>{{ $row->id }}</td>
         <td>{{ $row->classname }}</td>
-        <td>{{ count($row->user) }}</td>
+        <td>{{ count($row->user) }}/10</td>
        
         </tr>
         
