@@ -42,7 +42,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('schedule.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Lịch học</span></a>
             </li>
@@ -56,24 +56,11 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Quản trị Tài khoản</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Danh mục</h6>
-                        <a class="collapse-item" href="{{route('account.create')}}">Đăng ký tài khoản</a>
-                        <a class="collapse-item" href="{{route('account.index')}}">Quản lý tài khoản</a>
-                    </div>
-                </div>
-            </li>
+            
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('profile.index')}}">
+                <a class="nav-link" href="{{route('scheduleindex')}}">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     <span>Tài khoản cá nhân</span></a>
             </li>
@@ -96,7 +83,21 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <span>Học phần</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Danh mục</h6>
+                        <a class="collapse-item" href="{{route('schedule.create')}}">Đăng ký học phần</a>
+                        <a class="collapse-item" href="{{route('account.index')}}">Thông tin lớp học</a>
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -104,7 +105,7 @@
 
             <!-- Sidebar Message -->
             
-
+            
         </ul>
         <!-- End of Sidebar -->
 

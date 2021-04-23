@@ -64,6 +64,9 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
 
         Route::post('/find', [AccountController::class,'indexfind'])->name('find');
         Route::post('/get-classes', [Registercontroller::class,'getClassesByCourseId']);
+        Route::Resource('/profile', ProfileController::class);
+        Route::get('/profilepc/{id}', [ProfileController::class,'editpassword'])->name('profilepc');
+        Route::post('/profilestore/{id}', [ProfileController::class,'storepassword'])->name('profilestore');
         
 
     
@@ -74,18 +77,17 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
             return view('layouts.AdminMaster');
         });
         Route::Resource('/schedule', StudentController::class);
-        Route::post('/find', [AccountController::class,'indexfind'])->name('find');
-        Route::get('/export', [AccountController::class,'export'])->name('export');
-        Route::get('/import', [AccountController::class,'import'])->name('import');
-    
+        Route::get('/schedulepc/{id}', [StudentController::class,'editpassword'])->name('schedulepc');
+        Route::get('/scheduleindex', [StudentController::class,'indexprofile'])->name('scheduleindex');
+        Route::post('/schedulestore/{id}', [StudentController::class,'storepassword'])->name('schedulestore');
+        Route::post('/get-classeshv', [StudentController::class,'getClassesByCourseIdhv']);
+        
     
     });
     Route::get('/404', function () {
         return view('404');
     })->name('erorr404');
-    Route::Resource('/profile', ProfileController::class);
-    Route::get('/profilepc/{id}', [ProfileController::class,'editpassword'])->name('profilepc');
-    Route::post('/profilestore/{id}', [ProfileController::class,'storepassword'])->name('profilestore');
+    
 
 });
 

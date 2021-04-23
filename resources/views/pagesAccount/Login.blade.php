@@ -70,10 +70,10 @@
                                         <hr>
                                         
                                     </form>
-                                    @if($errors->has('newpass'))
+                                    @if($errors->has('password'))
                                     <div class="form-row">
                                     <div class="alert alert-danger">
-                                    {{$errors->first('newpass')}}
+                                    {{$errors->first('password')}}
                                     </div>
                                     </div>
                                     @endif

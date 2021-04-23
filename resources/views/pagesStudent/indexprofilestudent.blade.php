@@ -1,7 +1,7 @@
 
-@extends('layouts.Adminmaster')
+@extends('layouts.StudentMaster')
 
-@section('Adminmaster')
+@section('Studentmaster')
 
 <link href="{{asset('css/profile.css')}}" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -22,26 +22,23 @@
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                        @if(Auth::check())
+                                        
                                             <h5>
                                             {{Auth::user()->username}}
                                             </h5>
-                                        @endif
-                                    
-                                    @if(Auth::check())
-                                        @if(Auth::user()->permission == 1)
+                                        
                                         <h6>
-                                            Quản Trị (admin)
+                                            Học Viên (student)
                                         </h6>
-                                        @endif
-                                    @endif
                                     <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Thông tin</a>
                                 </li>
 
-                               
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Học phần</a>
+                                </li>
                                 
                             </ul>
                         </div>
@@ -49,7 +46,7 @@
                     <div class="col-md-2">
                     
                     </form>
-                    <form action="{{route('profile.edit',Auth::user()->id)}}" method="get">
+                    <form action="{{route('schedule.edit',Auth::user()->id)}}" method="get">
                         @csrf
                         <button type="submit" class="profile-edit-btn" name="btn_update">Edit Profile</button>
                     </form>
@@ -62,7 +59,7 @@
                     <div class="col-md-4">
                         <div class="profile-work">
                             <p>Đổi mật khẩu</p>
-                            <form action="{{route('profilepc',Auth::user()->id)}}" method="get">
+                            <form action="{{route('schedulepc',Auth::user()->id)}}" method="get">
                                 @csrf
                                 <button type="submit" class="profile-edit-btn" name="btn_update">change password</button>
                             </form>
@@ -75,7 +72,7 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>User Id</label>
+                                                <label>Mã học viên</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>{{Auth::user()->id}}</p>
@@ -83,7 +80,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Name</label>
+                                                <label>Họ tên</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>{{Auth::user()->name}}</p>
@@ -100,18 +97,48 @@
                                        
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Profession</label>
+                                                <label>vị trí</label>
                                             </div>
                                             <div class="col-md-6">
-                                                @if(Auth::user()->permission == 1)
+                                                
                                                     <p>
-                                                        Quản Trị
+                                                        Học Viên
                                                     </p>
-                                                @endif
                                             </div>
                                         </div>
                             </div>
-                            
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Khóa học đã đăng ký</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <p>
+                                            @foreach($user->classn as $row)
+                                                {{$row->course->coursename }},
+                                            @endforeach
+                                            </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>lớp đã đăng ký học</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>@foreach($user->classn as $row)
+                                                        {{$row->classname }},
+                                                    @endforeach</p>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                               
+                            </div>
+                            @if(session('notification'))
+                <div class="alert alert-success">
+                {{session('notification')}}
+                </div>
+            @endif
                         </div>
                     </div>
                 </div>

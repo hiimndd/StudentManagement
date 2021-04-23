@@ -1,8 +1,7 @@
-@extends('layouts.Adminmaster')
 
-@section('Adminmaster')
+@extends('layouts.StudentMaster')
 
-<body>
+@section('Studentmaster')
 
     
  
@@ -13,55 +12,54 @@
     <div class="col-lg-8 offset-lg-2">
         <div class="p-5">
             <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Đổi mật khẩu!</h1>
+                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
             </div>
-            <form action="{{route('profilestore',Auth::user()->id)}}" method="POST" class="user">
+            <form action="{{route('schedule.update',Auth::user()->id)}}" method="POST" class="user">
             @csrf
+            @method('put')
             
                 <div class="form-group">
                     <input disabled value ="{{ $user['username'] }}" name="username" type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Tên đăng nhập">
                 </div>
-                <div class="form-group">
-                    <input value = "" name="password" type="password" class="form-control form-control-user" id="exampleInputEmail" placeholder="mật khẩu ">
-                </div>
-                @if($errors->has('password'))
-                    <div class="form-row">
-                    <div class="alert alert-danger">
-                    {{$errors->first('password')}}
-                    </div>
-                    </div>
-                @endif
                 
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input value = "" name="newpass" type="password" class="form-control form-control-user" id="exampleFirstName" placeholder="Mật khẩu mới">
+                        <input value = "{{ $user['name'] }}" name="name" type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Họ tên">
                         
                     </div>
                     
                     
                     <div class="col-sm-6">
-                        <input value = "" type="password" name="password_confirmation" class="form-control form-control-user" id="exampleLastName" placeholder="Nhập lại mật khẩu mới">
+                        <input value = "{{ $user['birthday'] }}" type="date" name="birthday" class="form-control form-control-user" id="exampleLastName" placeholder="Ngày sinh">
                         
                     </div>
-                    
                    
                 </div>
-                @if($errors->has('newpass'))
+                @if($errors->has('birthday'))
+                            <div class="form-row">
+                            <div class="alert alert-danger">
+                            {{$errors->first('birthday')}}
+                            </div>
+                            </div>
+                        @endif
+                        @if($errors->has('name'))
+                            <div class="form-row">
+                            <div class="alert alert-danger">
+                            {{$errors->first('name')}}
+                            </div>
+                            </div>
+                        @endif
+                 
+                <div class="form-group">
+                    <input value = "{{ $user['email'] }}" name="email" type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email ">
+                </div>
+                @if($errors->has('email'))
                     <div class="form-row">
                     <div class="alert alert-danger">
-                    {{$errors->first('newpass')}}
+                    {{$errors->first('email')}}
                     </div>
                     </div>
-                    @endif
-                    @if($errors->has('password_confirmation'))
-                    <div class="form-row">
-                    <div class="alert alert-danger">
-                    {{$errors->first('password_confirmation')}}
-                    </div>
-                    </div>
-                    @endif
-                
-                
+                @endif
                 
                
                 <button type="submit" class="btn btn-primary btn-user btn-block">
@@ -70,7 +68,7 @@
 
 
             </form>
-           
+            
                         
                         
             <hr>

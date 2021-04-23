@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
+use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 class StudentController extends Controller
 {
     /**
@@ -16,10 +19,13 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // dd($class);
         $user = User::with('classn.time')->findOrFail(Auth::user()->id);
-        // dd($user->classn[0]->time);
         return view('pagesStudent.indexstudent',['user'=> $user]);
+    }
+    public function indexprofile()
+    {
+        $user = User::with('classn.course')->findOrFail(Auth::user()->id);
+        return view('pagesStudent.indexprofilestudent',['user' => $user]);
     }
 
     /**
@@ -29,7 +35,19 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        $course = Course::All();
+        return view('pagesStudent.registerstudent',['course'=>$course]);
+    }
+    public function getClassesByCourseIdhv(Request $request)
+    {
+        $classes = Course::findOrFail($request->courseId)->classn; 
+        // dd($class);
+        //return view('pagesRegister.addregister',['course'=>$course]);
+        
+        return response()->json([
+            'classes' => $classes,
+        ]);
+        
     }
 
     /**
@@ -40,7 +58,26 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,
+        [
+            'coursename' =>'required',
+            'classname' =>'required',
+
+        ],[
+            
+            'coursename.required' => 'Hãy chọn khóa học mong muốn',
+            'classname.required' => 'chọn tên lớp',
+        ]);
+        $user = User::with('classn')->findOrFail(Auth::user()->id);
+        foreach($user->classn as $row){
+            if($row->pivot->user_id == Auth::user()->id){
+                return redirect()->route('schedule.create',$request->classname)->with('notificationer','Bạn đã đăng ký lớp học này!');
+            }
+        }
+
+        $data = User::find(Auth::user()->id);
+        $data->classn()->syncWithoutDetaching([$request->classname]);
+        return redirect()->route('schedule.index',$request->classname)->with('notification','Đăng ký thành công');
     }
 
     /**
@@ -62,7 +99,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('pagesStudent.editprofilestudent',['user'=>$user]);
     }
 
     /**
@@ -74,7 +112,28 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        
+        $this->validate($request,
+        [
+            'email' => "required|email|unique:users,email,$id",
+            'name' => "required",
+            'birthday' => 'required',
+        ],[
+            'email.unique' => 'Email này đã được sử dụng',
+            'email.required' => 'Chúng tôi cần biết email của tài khoản',
+            'email.email' => 'Email không đúng định dạng',
+            'name.required' => 'Không bỏ trống tên đăng nhập',
+            'birthday.required' => 'Đừng bỏ trắng dòng này ',
+            
+        ]);
+       
+        $user->name = $request->name;
+        $user->birthday = $request->birthday;
+        $user->email = $request->email;
+        
+        $user->save();
+        return redirect()->route('scheduleindex')->with('notification','Sữa thành công!');
     }
 
     /**
@@ -86,5 +145,34 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function editpassword($id)
+    {
+        $user = User::find($id);
+        return view('pagesStudent.editpasswordstudent',['user'=>$user]);
+    }
+    public function storepassword(Request $request, $id)
+    {
+        $this->validate($request,
+        [
+            'password' => 'required',
+            'newpass' => 'required',
+            'password_confirmation' => 'required_with:password|same:newpass',
+        ],[
+            
+            
+            'password.required' => 'Nhập mật khẩu',
+            'newpass.required' => 'Nhập mật khẩu mới',
+            'password_confirmation.same' => 'Nhập sai khi xác nhận mật khẩu',
+        ]);
+        if (! Hash::check($request->password, $request->user()->password)) {
+            return back()->withErrors([
+                'password' => ['Mật khẩu cung cấp không khớp với hồ sơ của bạn']
+            ]);
+        }
+        $user = User::find($id);
+        $user->password = bcrypt($request->newpass);
+        $user->save();
+        return redirect()->route('scheduleindex')->with('notification','lưu thành công!');
     }
 }

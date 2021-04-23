@@ -1,6 +1,7 @@
-@extends('layouts.Adminmaster')
 
-@section('Adminmaster')
+@extends('layouts.StudentMaster')
+
+@section('Studentmaster')
 
 <body>
 
@@ -15,7 +16,7 @@
             <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Đổi mật khẩu!</h1>
             </div>
-            <form action="{{route('profilestore',Auth::user()->id)}}" method="POST" class="user">
+            <form action="{{route('schedulestore',Auth::user()->id)}}" method="POST" class="user">
             @csrf
             
                 <div class="form-group">
