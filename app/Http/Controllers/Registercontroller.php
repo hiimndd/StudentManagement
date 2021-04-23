@@ -85,7 +85,8 @@ class Registercontroller extends Controller
      */
     public function show($id)
     {
-        
+        $user = User::with('classn.user')->find($id);
+        return view('pagesRegister.showregister',['user'=>$user]);
     }
 
     /**
@@ -96,7 +97,7 @@ class Registercontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

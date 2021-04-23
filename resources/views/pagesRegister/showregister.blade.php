@@ -3,9 +3,9 @@
 
 <div class="container">
         
-  <h2>Danh sách lớp đã đăng ký @foreach($course as $row)
-          {{$row->coursename}}
-        @endforeach </h2>
+  <h2>Danh sách lớp đã đăng ký 
+          {{$user->name}}
+         </h2>
   
   
         <a href="{{route('course.index')}}"><button type="button" class="btn btn-default" name="bttxt">Trở về</button></a>
@@ -25,8 +25,8 @@
         
 
 
-        @foreach($course as $row)
-            @foreach($row->classn as $row)
+        
+        @foreach($user->classn as $row)
         <tr>
         <td>{{ $row->id }}</td>
         <td>{{ $row->classname }}</td>
@@ -34,8 +34,8 @@
        
         </tr>
         
-            @endforeach
         @endforeach
+        
         
         
         

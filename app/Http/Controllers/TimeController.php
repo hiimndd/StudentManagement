@@ -21,16 +21,17 @@ class TimeController extends Controller
         
         
         
-
-        $class = Room::with('classn.time')->find(1)->get()->toArray();
+        $class1 = Room::All();
+        $class = Room::with('classn.time')->find(1);
         
-        return view('pagesTime.indextime',['class'=>$class]);
+        return view('pagesTime.indextime',['class'=>$class,'class1'=>$class1]);
     }
-    public function indexfind()
+    public function indexfind(Request $request)
     {
-        $class = Classn::all();
+        $class1 = Room::All();
+        $class = Room::with('classn.time')->find($request->roomname);
         
-        return view('pagesTime.indextime',['class'=>$class]);
+        return view('pagesTime.indextime',['class'=>$class,'class1'=>$class1]);
     }
     /**
      * Show the form for creating a new resource.

@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="{{asset('css/style.css')}}">
+  <title>Schedule Template | CodyHouse</title>
 
     <title>SB Admin 2 - Register</title>
 
@@ -327,6 +332,8 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{asset('js/util.js')}}"></script> <!-- util functions included in the CodyHouse framework -->
+     <script src="{{asset('js/main.js')}}"></script>
 
 
 </body>
