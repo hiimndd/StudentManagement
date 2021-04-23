@@ -67,6 +67,7 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         Route::Resource('/profile', ProfileController::class);
         Route::get('/profilepc/{id}', [ProfileController::class,'editpassword'])->name('profilepc');
         Route::post('/profilestore/{id}', [ProfileController::class,'storepassword'])->name('profilestore');
+        Route::get('/cancelclass/{id}/{classid}', [ClassController::class,'cancelregister'])->name('cancelclass');
         
 
     

@@ -16,7 +16,9 @@ class Registercontroller extends Controller
      */
     public function index()
     {
+        $data = User::all()->where('permission', '=', 2);
         
+        return view('pagesRegister.indexregister',['data'=>$data]);
     }
 
     /**
@@ -83,7 +85,7 @@ class Registercontroller extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

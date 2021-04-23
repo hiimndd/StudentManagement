@@ -161,7 +161,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Danh mục:</h6>
                         <a class="collapse-item" href="{{route('register.create')}}">Đăng ký khóa học</a>
-                        <a class="collapse-item" href="{{route('time.index')}}">Danh sách học viên</a>
+                        <a class="collapse-item" href="{{route('register.index')}}">Danh sách học viên</a>
                     </div>
                 </div>
             </li>

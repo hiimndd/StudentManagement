@@ -22,7 +22,7 @@ class TimeController extends Controller
         
         
 
-        $class = Room::find(1)->with('classn.time')->get()->toArray();
+        $class = Room::with('classn.time')->find(1)->get()->toArray();
         
         return view('pagesTime.indextime',['class'=>$class]);
     }

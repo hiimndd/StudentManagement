@@ -156,5 +156,14 @@ class ClassController extends Controller
         $user->save();
         return redirect()->back()->with('notification','Sữa thành công!');
     }
+    public function cancelregister($id,$classid){
+        
+        $sv = Classn::find($classid);
+        $sv->user()->detach($id);
+        return redirect()->route('class.show', $classid)->with('notification','Xóa thành công!');
+        
+
+
+    }
     
 }

@@ -27,6 +27,7 @@
 
 
         @foreach($class as $row)
+        {{ $malop = $row->id }}
             @foreach($row->user as $row)
         <tr>
         <td>{{ $row->name }}</td>
@@ -34,7 +35,7 @@
         <td>{{ $row->email }}</td>
         <td>
         
-        <form action="" method="GET">
+        <form action="{{ route('cancelclass', [$row->id,$malop]) }}" method="GET">
           <a href = "{{ route('classed', $row->id) }}"><button type="button" class="btn btn-primary">sửa</button><a> </a>
           @csrf
           <a onclick="return confirm('Bạn có chắc muốn xóa thông tin này')">
