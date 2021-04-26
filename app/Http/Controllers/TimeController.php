@@ -18,20 +18,26 @@ class TimeController extends Controller
      */
     public function index()
     {
+        $room = Room::All();
+        $class = Room::with('time.classn')->findOrFail(1);
+        
+       
+        return view('pagesTime.indextime',['class'=>$class,'room'=>$room]);
         
         
         
-        $class1 = Room::All();
-        $class = Room::with('classn.time')->find(1);
-        
-        return view('pagesTime.indextime',['class'=>$class,'class1'=>$class1]);
     }
     public function indexfind(Request $request)
     {
-        $class1 = Room::All();
-        $class = Room::with('classn.time')->find($request->roomname);
+        if(isset($request->roomname)){
+            $keepvl = Room::find($request->roomname);
+            $room = Room::All()->where('id', '!=', $request->roomname);
+            $class = Room::with('time.classn')->findOrFail($request->roomname);
+            
+            return view('pagesTime.indextime',['class'=>$class,'room'=>$room,'keepvl' => $keepvl]);
+        }
         
-        return view('pagesTime.indextime',['class'=>$class,'class1'=>$class1]);
+        
     }
     /**
      * Show the form for creating a new resource.
@@ -72,26 +78,13 @@ class TimeController extends Controller
         $time_id = Time::where(['lesson' => $request->lesson, 'weekdays' => $request->weekdays])->get()->toArray(); 
         
         $class = Classn::find($request->classname);
-        // $classall = Classn::All();
-        // foreach($classall as $row){
-        //     foreach($row->time as $row){
-        //         print_r($row->toArray()['pivot']['id']."<br>");
-                
-        //     }
-        // }
-        // Room::find($request->roomname)->classn;
-        // Room::find($request->roomname)->classn()->get();
-        // $cl = Room::find($request->roomname)->with('classn.time')->get()->toArray();
-        // dd($cl);
-        // $room = $class->room->toArray();
-        // dd($room);
-        //     foreach($class->room as $row){
-        //         print_r($row->toArray());
-        //     }
         
-        if (! ($class->time->contains($time_id[0]['id'])  ) ) {
-            $class->time()->syncWithoutDetaching([$time_id[0]['id']]);
-            $class->room()->syncWithoutDetaching([$request->roomname]);
+
+
+        if (! ($class->time->contains($time_id[0]['id']))  ) {
+                $class->time()->attach($time_id[0]['id'], ['room_id' => $request->roomname]);
+            
+            
         }else{
             return redirect()->route('time.create')->with('notificationer','Trùng lịch học, hãy chọn lịch trống!');
         }

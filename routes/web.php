@@ -83,6 +83,9 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         Route::get('/scheduleindex', [StudentController::class,'indexprofile'])->name('scheduleindex');
         Route::post('/schedulestore/{id}', [StudentController::class,'storepassword'])->name('schedulestore');
         Route::post('/get-classeshv', [StudentController::class,'getClassesByCourseIdhv']);
+        Route::get('/studentclass', [StudentController::class,'studentclass'])->name('studentclass');
+        Route::get('/checkschedule', [StudentController::class,'checkschedule'])->name('checkschedule');
+        Route::post('/seachschedule', [StudentController::class,'seachschedule'])->name('seachschedule');
         
     
     });

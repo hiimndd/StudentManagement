@@ -14,11 +14,11 @@ class Classn extends Model
     }
     public function time()
     {
-        return $this->belongsToMany(Time::class)->withPivot('id');
+        return $this->belongsToMany(Time::class,'classn_room_time')->withPivot('id','room_id');
     }
     public function room()
     {
-        return $this->belongsToMany(Room::class);
+        return $this->belongsToMany(Room::class,'classn_room_time')->withPivot('id','time_id');
     }
     public function course()
     {

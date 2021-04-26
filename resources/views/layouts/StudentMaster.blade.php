@@ -9,6 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <title>Schedule Template | CodyHouse</title>
+
     <title>SB Admin 2 - Register</title>
 
     <!-- Custom fonts for this template-->
@@ -93,7 +99,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Danh mục</h6>
                         <a class="collapse-item" href="{{route('schedule.create')}}">Đăng ký học phần</a>
-                        <a class="collapse-item" href="{{route('account.index')}}">Thông tin lớp học</a>
+                        <a class="collapse-item" href="{{route('studentclass')}}">Thông tin lớp học</a>
+                        <a class="collapse-item" href="{{route('checkschedule')}}">Thông tin Lịch học các lớp</a>
                     </div>
                 </div>
             </li>
@@ -253,7 +260,8 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('/js/demo/chart-pie-demo.js')}}"></script>
-
+    <script src="{{asset('js/util.js')}}"></script> <!-- util functions included in the CodyHouse framework -->
+    <script src="{{asset('js/main.js')}}"></script>
 
 </body>
 

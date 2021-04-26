@@ -13,12 +13,22 @@
                 <div class="form-group row">
                 <select name="roomname" class="form-control formselect required" placeholder="Select Category"
                 id="sub_category_name">
-                
-                @foreach($class1 as $row)
+
+                @if(isset($keepvl))
+                  <option  value="{{$keepvl->id}}" selected > {{ $keepvl->roomname }}</option>
+                  @foreach($room as $row)
                     <option  value="{{ $row->id }}">
                         {{ ucfirst($row->roomname) }}
                     </option>
-                @endforeach 
+                  @endforeach 
+                @else
+                  @foreach($room as $row)
+                      <option  value="{{ $row->id }}">
+                          {{ ucfirst($row->roomname) }}
+                      </option>
+                  @endforeach
+
+                @endif    
                     
                 </select>
                
@@ -91,59 +101,60 @@
         <div class="cd-schedule__top-info"><span>Monday</span></div>
         
         <ul>
-        @foreach($class->classn as $rows)
-            @foreach($rows->time as $row)
+        
+            @foreach($class->time as $row)
                       @if($row->weekdays == "Monday")
                       @switch($row->lesson)
+                      
                           @case(1)
                           <li class="cd-schedule__event">
                             <a data-start="9:00" data-end="10:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
+                              
                             </a>
+                            
                           </li>
+                          
                               @break
                           @case(2)
                             <li class="cd-schedule__event">
                             <a data-start="10:30" data-end="12:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(3)
                           <li class="cd-schedule__event">
                             <a data-start="14:00" data-end="15:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(4)
                           <li class="cd-schedule__event">
                             <a data-start="15:30" data-end="17:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(5)
                             <li class="cd-schedule__event">
                               <a data-start="17:00" data-end="18:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                           @case(6)
                             <li class="cd-schedule__event">
                               <a data-start="18:30" data-end="20:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                         @endswitch
                     @endif
-
-
-
             @endforeach
-        @endforeach
+        
         </ul>
     </li>
         
@@ -152,61 +163,55 @@
           <div class="cd-schedule__top-info"><span>Tuesday</span></div>
   
           <ul>
-          @foreach($class->classn as $rows)
-            @foreach($rows->time as $row)
+          @foreach($class->time as $row)
                       @if($row->weekdays == "Tuesday")
                       @switch($row->lesson)
+                      
                           @case(1)
                           <li class="cd-schedule__event">
                             <a data-start="9:00" data-end="10:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(2)
                             <li class="cd-schedule__event">
                             <a data-start="10:30" data-end="12:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(3)
                           <li class="cd-schedule__event">
                             <a data-start="14:00" data-end="15:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(4)
                           <li class="cd-schedule__event">
                             <a data-start="15:30" data-end="17:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(5)
                             <li class="cd-schedule__event">
                               <a data-start="17:00" data-end="18:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                           @case(6)
                             <li class="cd-schedule__event">
                               <a data-start="18:30" data-end="20:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                         @endswitch
                     @endif
-
-
-
             @endforeach
-        @endforeach
-            
-  
           </ul>
         </li>
   
@@ -214,59 +219,55 @@
           <div class="cd-schedule__top-info"><span>Wednesday</span></div>
   
           <ul>
-          @foreach($class->classn as $rows)
-            @foreach($rows->time as $row)
+          @foreach($class->time as $row)
                       @if($row->weekdays == "Wednesday")
                       @switch($row->lesson)
+                      
                           @case(1)
                           <li class="cd-schedule__event">
                             <a data-start="9:00" data-end="10:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(2)
                             <li class="cd-schedule__event">
                             <a data-start="10:30" data-end="12:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(3)
                           <li class="cd-schedule__event">
                             <a data-start="14:00" data-end="15:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(4)
                           <li class="cd-schedule__event">
                             <a data-start="15:30" data-end="17:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(5)
                             <li class="cd-schedule__event">
                               <a data-start="17:00" data-end="18:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                           @case(6)
                             <li class="cd-schedule__event">
                               <a data-start="18:30" data-end="20:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                         @endswitch
                     @endif
-
-
-
             @endforeach
-        @endforeach
             
   
            
@@ -277,59 +278,55 @@
           <div class="cd-schedule__top-info"><span>Thursday</span></div>
   
           <ul>
-          @foreach($class->classn as $rows)
-            @foreach($rows->time as $row)
+          @foreach($class->time as $row)
                       @if($row->weekdays == "Thursday")
                       @switch($row->lesson)
-                      @case(1)
+                      
+                          @case(1)
                           <li class="cd-schedule__event">
                             <a data-start="9:00" data-end="10:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(2)
                             <li class="cd-schedule__event">
                             <a data-start="10:30" data-end="12:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(3)
                           <li class="cd-schedule__event">
                             <a data-start="14:00" data-end="15:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(4)
                           <li class="cd-schedule__event">
                             <a data-start="15:30" data-end="17:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(5)
                             <li class="cd-schedule__event">
                               <a data-start="17:00" data-end="18:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                           @case(6)
                             <li class="cd-schedule__event">
                               <a data-start="18:30" data-end="20:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                         @endswitch
                     @endif
-
-
-
             @endforeach
-        @endforeach
           </ul>
         </li>
 
@@ -339,118 +336,110 @@
           <div class="cd-schedule__top-info"><span>Friday</span></div>
                      
           <ul>
-          @foreach($class->classn as $rows)
-            @foreach($rows->time as $row)
+          @foreach($class->time as $row)
                       @if($row->weekdays == "Friday")
                       @switch($row->lesson)
+                      
                           @case(1)
                           <li class="cd-schedule__event">
                             <a data-start="9:00" data-end="10:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(2)
                             <li class="cd-schedule__event">
                             <a data-start="10:30" data-end="12:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(3)
                           <li class="cd-schedule__event">
                             <a data-start="14:00" data-end="15:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(4)
                           <li class="cd-schedule__event">
                             <a data-start="15:30" data-end="17:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(5)
                             <li class="cd-schedule__event">
                               <a data-start="17:00" data-end="18:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                           @case(6)
                             <li class="cd-schedule__event">
                               <a data-start="18:30" data-end="20:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                         @endswitch
                     @endif
-
-
-
             @endforeach
-        @endforeach
           </ul>
         </li>
         <li class="cd-schedule__group">
           <div class="cd-schedule__top-info"><span>Saturday</span></div>
   
           <ul>
-          @foreach($class->classn as $rows)
-            @foreach($rows->time as $row)
+          @foreach($class->time as $row)
                       @if($row->weekdays == "Saturday")
                       @switch($row->lesson)
+                      
                           @case(1)
                           <li class="cd-schedule__event">
                             <a data-start="9:00" data-end="10:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(2)
                             <li class="cd-schedule__event">
                             <a data-start="10:30" data-end="12:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(3)
                           <li class="cd-schedule__event">
                             <a data-start="14:00" data-end="15:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(4)
                           <li class="cd-schedule__event">
                             <a data-start="15:30" data-end="17:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                              <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                              <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                             </a>
                           </li>
                               @break
                           @case(5)
                             <li class="cd-schedule__event">
                               <a data-start="17:00" data-end="18:30" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                           @case(6)
                             <li class="cd-schedule__event">
                               <a data-start="18:30" data-end="20:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
-                                <em class="cd-schedule__name">{{$rows['classname']}}</em>
+                                <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
                             </li>
                               @break
                         @endswitch
                     @endif
-
-
-
             @endforeach
-        @endforeach
           </ul>
         </li>
       </ul>

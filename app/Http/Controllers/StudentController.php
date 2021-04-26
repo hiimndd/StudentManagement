@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
+use App\Models\Classn;
 use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -19,13 +20,34 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $user = User::with('classn.time')->findOrFail(Auth::user()->id);
+        $user = User::with('classn.time.room')->findOrFail(Auth::user()->id);
         return view('pagesStudent.indexstudent',['user'=> $user]);
     }
     public function indexprofile()
     {
         $user = User::with('classn.course')->findOrFail(Auth::user()->id);
         return view('pagesStudent.indexprofilestudent',['user' => $user]);
+    }
+    public function studentclass()
+    {
+        $class = User::with('classn.user')->with('classn.course')->find(Auth::user()->id);
+        return view('pagesStudent.informationclass',['class'=>$class]);
+    }
+    public function checkschedule()
+    {
+        
+        $classcbb = Classn::All();
+        $class = Classn::with('time.room')->with('course')->find(7);
+       
+        return view('pagesStudent.schedulestudent',['class'=>$class,'classcbb'=>$classcbb]);
+    }
+    public function seachschedule(Request $request)
+    {
+        $keepvl = Classn::find($request->roomname);
+        $classcbb = Classn::All()->where('id', '!=', $request->roomname);
+        $class = Classn::with('time.classn')->findOrFail($request->roomname);
+        
+        return view('pagesStudent.schedulestudent',['class'=>$class,'classcbb'=>$classcbb,'keepvl' => $keepvl]);
     }
 
     /**
@@ -70,7 +92,7 @@ class StudentController extends Controller
         ]);
         $user = User::with('classn')->findOrFail(Auth::user()->id);
         foreach($user->classn as $row){
-            if($row->pivot->user_id == Auth::user()->id){
+            if($row->id == $request->classname){
                 return redirect()->route('schedule.create',$request->classname)->with('notificationer','Bạn đã đăng ký lớp học này!');
             }
         }
@@ -88,7 +110,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $class = Classn::with('user')->find($id);
+        return view('pagesStudent.showclass',['class'=>$class]);
     }
 
     /**
@@ -144,7 +167,9 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $class = Classn::find($id);
+        $class->user()->detach(Auth::user()->id);
+        return redirect()->route('studentclass')->with('notification','Đã hủy đăng ký!');
     }
     public function editpassword($id)
     {
@@ -175,4 +200,5 @@ class StudentController extends Controller
         $user->save();
         return redirect()->route('scheduleindex')->with('notification','lưu thành công!');
     }
+    
 }
