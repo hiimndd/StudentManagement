@@ -99,8 +99,7 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        $user = User::All()->where('id', '=', $id);
-        
+        $user = User::with('classn.course')->findOrFail($id);
         return view('pagesAccount.showAccount',['user'=>$user]);
     }
 

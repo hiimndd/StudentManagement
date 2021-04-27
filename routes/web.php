@@ -21,9 +21,6 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('layouts.AdminMaster');
-// });
 // Route::get('/dangky', function () {
 //     return view('pagesAccount.register');
 // })->name('dangky');
@@ -52,6 +49,10 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         Route::get('/', function () {
             return view('layouts.AdminMaster');
         });
+        Route::get('test', function () {
+            return view('pagesTime.testschedule');
+        });
+        
         Route::Resource('/course', CourseController::class);
         Route::Resource('/account', AccountController::class);
         Route::Resource('/class', ClassController::class);

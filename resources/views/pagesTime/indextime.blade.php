@@ -431,7 +431,7 @@
                             </li>
                               @break
                           @case(6)
-                            <li class="cd-schedule__event">
+                            <li class="cd-schedule__event" >
                               <a data-start="18:30" data-end="20:00" data-content="event-abs-circuit" data-event="event-1" href="#0">
                                 <em class="cd-schedule__name">{{$row->classn[0]->classname}}</em>
                               </a>
@@ -456,7 +456,13 @@
       </header>
   
       <div class="cd-schedule-modal__body">
-        <div class="cd-schedule-modal__event-info"></div>
+        <div class="cd-schedule-modal__event-info">
+        <div style="display: flex">
+        áhdgjahsdg
+  
+        </div>
+        </div>
+      
         <div class="cd-schedule-modal__body-bg"></div>
       </div>
   

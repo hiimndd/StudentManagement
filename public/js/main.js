@@ -299,8 +299,13 @@
 	      	self.modal.getElementsByClassName('cd-schedule-modal__event-info')[0].innerHTML = self.getEventContent(httpRequest.responseText); 
 	      	Util.addClass(self.modal, 'cd-schedule-modal--content-loaded');
 	      }
+	
 	    }
+		elseif(httpRequest.readyState == XMLHttpRequest.scheduleReset);{
+			return dispatchEvent.scheduleTemplate.scheduleTemplateArray()
+		}
 		};
+		
 		httpRequest.open('GET', content+'.html');
     httpRequest.send();
 	};

@@ -453,7 +453,16 @@
       </header>
   
       <div class="cd-schedule-modal__body">
-        <div class="cd-schedule-modal__event-info"></div>
+        
+
+        <div class="cd-schedule-modal__body">
+        <div class="cd-schedule-modal__event-info">
+        <div style="display: flex">
+        
+          "asjdhakjisdlakjihsdl"
+        </div>
+        </div>
+
         <div class="cd-schedule-modal__body-bg"></div>
       </div>
   
