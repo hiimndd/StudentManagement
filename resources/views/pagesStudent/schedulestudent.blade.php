@@ -153,6 +153,7 @@
             @endforeach
         
         </ul>
+        
     </li>
         
   
@@ -439,7 +440,7 @@
             @endforeach
           </ul>
         </li>
-      </ul>
+        </ul>
     </div>
   
     <div class="cd-schedule-modal">

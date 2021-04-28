@@ -10,6 +10,9 @@ use App\Http\Controllers\Registercontroller;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
+
+
+use App\Models\Classn;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,9 +52,7 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         Route::get('/', function () {
             return view('layouts.AdminMaster');
         });
-        Route::get('test', function () {
-            return view('pagesTime.testschedule');
-        });
+        
         
         Route::Resource('/course', CourseController::class);
         Route::Resource('/account', AccountController::class);
@@ -78,6 +79,15 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
     Route::group(['prefix'=>'student','middleware' => 'permissionCheck:student'],function(){
         Route::get('/', function () {
             return view('layouts.AdminMaster');
+        });
+        Route::get('test', function () {
+            $classcbb = Classn::All();
+            $class = Classn::with('time.room')->with('course')->find(1);
+            
+            return view('pagesTime.testschedule',['class'=>$class,'classcbb'=>$classcbb]);
+        });
+        Route::get('modal', function () {
+            return view('pagesTime.modal');
         });
         Route::Resource('/schedule', StudentController::class);
         Route::get('/schedulepc/{id}', [StudentController::class,'editpassword'])->name('schedulepc');

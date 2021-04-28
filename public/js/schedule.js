@@ -182,6 +182,7 @@ jQuery(document).ready(function($){
 				width: eventWidth+'px',
 			});
 			transformElement(self.modalHeaderBg, 'scaleY('+HeaderBgScaleY+')');
+		
 			
 			self.modalHeaderBg.one(transitionEnd, function(){
 				//wait for the  end of the modalHeaderBg transformation and show the modal content
