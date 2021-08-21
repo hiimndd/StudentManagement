@@ -2,7 +2,7 @@
 @extends('layouts.StudentMaster')
 
 @section('Studentmaster')
-
+<link rel="stylesheet" href="{{asset('css/schedule.css')}}">
 <link href="{{asset('css/profile.css')}}" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -46,23 +46,27 @@
                     <div class="col-md-2">
                     
                     </form>
-                    <form action="{{route('schedule.edit',Auth::user()->id)}}" method="get">
-                        @csrf
-                        <button type="submit" class="profile-edit-btn" name="btn_update">Edit Profile</button>
-                    </form>
+                    
                         
                         
                     </div>
                     
                 </div>
+                
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>Đổi mật khẩu</p>
                             <form action="{{route('schedulepc',Auth::user()->id)}}" method="get">
                                 @csrf
-                                <button type="submit" class="profile-edit-btn" name="btn_update">change password</button>
+                                <button type="submit" class="profile-edit-btn" name="btn_update">Đổi mật khẩu</button>
                             </form>
+                            <td >
+                                ---------------------
+                            </td>
+                            <form action="{{route('schedule.edit',Auth::user()->id)}}" method="get">
+                        @csrf
+                        <button type="submit" class="profile-edit-btn" name="btn_update">Sữa thông tin</button>
+                    </form>
                             
                             
                         </div>

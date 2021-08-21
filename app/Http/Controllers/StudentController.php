@@ -37,7 +37,7 @@ class StudentController extends Controller
     {
         
         $classcbb = Classn::All();
-        $class = Classn::with('time.room')->with('course')->find(1);
+        $class = Classn::with('time.room')->with('course')->find(5);
        
         return view('pagesStudent.schedulestudent',['class'=>$class,'classcbb'=>$classcbb]);
     }

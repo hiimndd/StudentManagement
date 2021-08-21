@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{asset('css/schedule.css')}}">
+<link rel="stylesheet" href="{{asset('css/modal.css')}}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <br />
 <p class="codyhouse">link to the site of Codyhouse: <a href="https://codyhouse.co/gem/schedule-template/">https://codyhouse.co/gem/schedule-template/</a></p>
@@ -375,6 +376,8 @@
 			
 			
 			
+			
+			
 <!--        -->
 		</ul>
 	</div>
@@ -391,7 +394,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-				dlakjsdhlakjsh
+				CLose Modal
 				</div>
 				
 				<div class="modal-footer">
@@ -402,7 +405,9 @@
 			</div>
 			</div>
 
-	
+			<div class="container">
+
+</div>
 
 
 	
@@ -416,9 +421,3 @@
 
 </div>
  <!-- .cd-schedule -->
-<script>
-const testModal = document.getElementById('test-modal');
-testModal.addEventListener('click', function() {
-	console.log('clicked');
-})
-</script>

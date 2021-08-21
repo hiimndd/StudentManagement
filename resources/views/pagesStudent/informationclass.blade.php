@@ -1,5 +1,6 @@
 @extends('layouts.StudentMaster')
 @section('Studentmaster')
+<link rel="stylesheet" href="{{asset('css/schedule.css')}}">
 <div align="center" class="container">
   <h2>DANH SÁCH LỚP ĐÃ ĐĂNG KÝ</h2>
   
@@ -11,10 +12,10 @@
   <table class="table table-striped">
   <thead>
       <tr align="center">
-        <th>Tên lớp </th>
-        <th>Khóa học</th>
-        <th>Tổng sinh viên</th>
-        <th></th>
+        <td>Tên lớp </td>
+        <td>Khóa học</td>
+        <td>Tổng sinh viên</td>
+        <td></td>
       </tr>
     </thead>
   <tbody>          

@@ -2,7 +2,7 @@
 @extends('layouts.StudentMaster')
 
 @section('Studentmaster')
-
+<link rel="stylesheet" href="{{asset('css/schedule.css')}}">
 <body>
 
     

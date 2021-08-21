@@ -159,7 +159,9 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-        
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('account.index')->with('notification','Xóa thành công!');
     }
     public function indexfind(Request $request){
         // $account =array();

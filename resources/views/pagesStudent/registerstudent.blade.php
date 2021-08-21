@@ -1,9 +1,11 @@
 @extends('layouts.StudentMaster')
 @section('Studentmaster')
+<link rel="stylesheet" href="{{asset('css/schedule.css')}}">
 <div class="container">
 
     
-    <h2>Đăng ký lớp học</h2>
+    
+    <div align="center"><h2>Đăng ký lớp học</h2></div>
     
      <form action="{{route('schedule.store')}}" method="POST">
     @csrf

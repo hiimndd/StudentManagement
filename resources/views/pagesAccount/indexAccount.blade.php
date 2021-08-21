@@ -94,7 +94,7 @@
           @endif
           <td>
           
-          <form action="" method="post">
+          <form action="{{route('account.destroy',$row['id'])}}" method="post">
           
           <a href = "{{route('account.show', $row['id'])}}"><button type="button" class="btn btn-primary">chi tiết</button><a> </a>
           <a href = "{{route('account.edit', $row['id'])}}"><button type="button" class="btn btn-primary">sửa</button><a> </a>

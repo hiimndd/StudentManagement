@@ -1,6 +1,9 @@
+
+
+
 @extends('layouts.StudentMaster')
 @section('Studentmaster')
-
+<link rel="stylesheet" href="{{asset('css/schedule.css')}}">
 
 <div  class="container">
     <div align="center"><h2>Danh sách lớp {{$class->classname }}</h2></div>
@@ -13,12 +16,12 @@
   
           
   <table align="center" class="table table-striped">
-  <thead>
+  <thead >
       <tr align="center">
-        <th>Họ tên</th>
-        <th>Ngày sinh</th>
-        <th>Email</th>
-        <th></th>
+        <td>Họ tên</td>
+        <td>Ngày sinh</td>
+        <td>Email</td>
+        <td></td>
       </tr>
     </thead>
   <tbody>
@@ -34,7 +37,6 @@
         
         </td>
         </tr>
-        </tr>
         
         @endforeach
         
@@ -42,14 +44,16 @@
         
     </tbody>
   </table>
+  
+ 
+
   @if(session('notification'))
     <div class="alert alert-success">
       {{session('notification')}}
     </div>
   @endif
   
+
 </div>
 </div>
 @endsection
-
-

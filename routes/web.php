@@ -59,6 +59,8 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         Route::Resource('/class', ClassController::class);
         Route::Resource('/room', RoomController::class);
         Route::Resource('/time', TimeController::class);
+        Route::get('/edittime/{id}/{idRoom}', [TimeController::class,'edittime'])->name('edittime');
+        Route::DELETE('/destroytime/{id}/{idRoom}', [TimeController::class,'destroytime'])->name('destroytime');
         Route::Resource('/register', Registercontroller::class);
        
         Route::get('/classed/{id}', [ClassController::class,'EditStudent'])->name('classed');
@@ -82,8 +84,7 @@ Route::group(['prefix'=>'role','middleware' => 'CheckloginMiddleware'],function(
         });
         Route::get('test', function () {
             $classcbb = Classn::All();
-            $class = Classn::with('time.room')->with('course')->find(1);
-            
+            $class = Classn::with('time.room')->with('course')->find(5);
             return view('pagesTime.testschedule',['class'=>$class,'classcbb'=>$classcbb]);
         });
         Route::get('modal', function () {
